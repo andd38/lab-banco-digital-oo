@@ -8,6 +8,25 @@ public abstract class Conta implements IConta {
 	protected int numero;
 	protected double saldo;
 	protected Cliente cliente;
+	protected int senha;	
+	@Override
+	public void cadastrar(Cliente nome, int senha) {
+		if(nome != this.cliente|| senha != this.senha ) {
+			System.out.println("Acesso negado a conta bancaria");
+		}else {
+			System.out.println("Bem vindo");
+		}
+		
+	}
+
+	
+
+	@Override
+	public String toString() {
+		return "Conta [agencia=" + agencia + ", numero=" + numero + ", saldo=" + saldo + ", cliente=" + cliente + "]";
+	}
+
+
 
 	public Conta(Cliente cliente) {
 		this.agencia = Conta.AGENCIA_PADRAO;
@@ -24,7 +43,7 @@ public abstract class Conta implements IConta {
 	public void depositar(double valor) {
 		saldo += valor;
 	}
-
+	
 	@Override
 	public void transferir(double valor, IConta contaDestino) {
 		this.sacar(valor);
